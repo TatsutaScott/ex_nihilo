@@ -1,0 +1,69 @@
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background-color: white;
+  color: #436436;
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100%;
+}
+
+pre {
+  margin: 0;
+  margin-left: 10px;
+  font-size: 1em;
+}
+
+main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+span {
+  font-size: 0.5rem;
+}
+
+.p5Canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+#map {
+  box-sizing: border-box;
+  padding: 10px;
+  font-family: "Courier", monospace;
+  display: grid;
+
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+.ascii_unit {
+  width: min-content;
+  width: 100%;
+  text-align: center;
+}
+
+.ascii_grid {
+  width: 100%;
+}
+
+.ascii_line {
+  line-height: 0.8;
+  margin: 0;
+  white-space-collapse: preserve;
+  font-family: "Courier", monospace;
+}
