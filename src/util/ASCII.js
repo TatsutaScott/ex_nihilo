@@ -29,11 +29,13 @@ class ASCII_canvas {
     const lines = txt.split("\n");
     for (let l = 0; l < lines.length; l++) {
       const chars = this.DOMArr[y + l].innerHTML.split("");
-      for (let i = 0; i < txt.length; i++) {
+      for (let i = 0; i < lines[l].length; i++) {
         if (lines[l][i] != " " && i + x < this.cols - 1) {
           chars[i + x] = lines[l][i];
         }
       }
+      console.log("after", chars);
+
       this.DOMArr[y + l].innerHTML = chars.join("");
     }
   }

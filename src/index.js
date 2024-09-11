@@ -3,21 +3,32 @@ import background_sketch from "./background_p5";
 
 import ASCII_canvas from "./util/ASCII";
 import Grid from "./util/Grid";
-import { flowers } from "./util/ascii_icons";
+import { flowers, trees, etc, birds } from "./util/ascii_icons";
 
 new p5(background_sketch);
 
 const scenery = document.getElementById("scenery");
 const aCan = new ASCII_canvas(scenery, 10);
 
-for (let i = 0; i < 10; i++) {
-  aCan.plot("\\\\|//", -1, -1);
-}
+// for (let i = 0; i < 10; i++) {
+//   aCan.plot("\\\\|//", -1, -1);
+// }
+
+// for (let i = 0; i < 10; i++) {
+//   aCan.plot(random(flowers), -1, -1);
+// }
+
+aCan.plot(random(flowers), -1, -1);
 
 const map = document.getElementById("map");
 const grid = new Grid(map, 40);
-console.log(flowers);
-aCan.plot(flowers.daffodil, -1, -1);
+// aCan.plot(flowers.daffodil, -1, -1);
+
+function random(obj) {
+  const random_key =
+    Object.keys(obj)[(Math.random() * Object.keys(obj).length) | 0];
+  return obj[random_key];
+}
 
 // ※⁕⁜⌀ʘ▥▨▩▦▣▤▧◊◙●◌○◍◓◚◛◒◎◉◯◬⊗⊖⊛⨳★
 // ※⁕⁜⌀ʘ▥▨▩▦▣▤▧◊◙●◌○◍◓◚◛◒◎◉◯◬⊗⊖⊛⨳★
