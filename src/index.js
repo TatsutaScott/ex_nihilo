@@ -1,57 +1,58 @@
 import p5 from "p5";
 import background_sketch from "./background_p5";
-
+import { settings_init } from "./settings";
 import ASCII_canvas from "./util/ASCII";
 import Grid from "./util/Grid";
 import { flowers, trees, etc, birds } from "./util/ascii_icons";
 
 new p5(background_sketch);
+settings_init();
 
-const sky_div = document.getElementById("sky");
-const sky = new ASCII_canvas(sky_div, 10);
-sky_render();
+// const sky_div = document.getElementById("sky");
+// const sky = new ASCII_canvas(sky_div, 10);
+// sky_render();
 
-const scenery_div = document.getElementById("scenery");
-const scenery = new ASCII_canvas(scenery_div, 10);
-scenery_render();
+// const scenery_div = document.getElementById("scenery");
+// const scenery = new ASCII_canvas(scenery_div, 10);
+// scenery_render();
 
-const map = document.getElementById("map");
-const grid = new Grid(map, 40);
+// const map = document.getElementById("map");
+// const grid = new Grid(map, 40);
 
-function random(obj) {
-  const random_key =
-    Object.keys(obj)[(Math.random() * Object.keys(obj).length) | 0];
-  return obj[random_key];
-}
+// function random(obj) {
+//   const random_key =
+//     Object.keys(obj)[(Math.random() * Object.keys(obj).length) | 0];
+//   return obj[random_key];
+// }
 
-function scenery_render() {
-  for (let i = 0; i < 20; i++) {
-    scenery.plot("\\\\|//", -1, -1);
-  }
+// function scenery_render() {
+//   for (let i = 0; i < 20; i++) {
+//     scenery.plot("\\\\|//", -1, -1);
+//   }
 
-  for (let i = 0; i < 10; i++) {
-    scenery.plot(random(flowers), -1, -1);
-  }
+//   for (let i = 0; i < 10; i++) {
+//     scenery.plot(random(flowers), -1, -1);
+//   }
 
-  for (let i = 0; i < 4; i++) {
-    scenery.plot(random(trees), -1, -1);
-  }
+//   for (let i = 0; i < 4; i++) {
+//     scenery.plot(random(trees), -1, -1);
+//   }
 
-  for (let i = 0; i < 6; i++) {
-    scenery.plot(random(birds), -1, -1);
-  }
-}
+//   for (let i = 0; i < 6; i++) {
+//     scenery.plot(random(birds), -1, -1);
+//   }
+// }
 
-function sky_render() {
-  for (let i = 0; i < 8; i++) {
-    if (Math.random() < 0.3) {
-      sky.plot(etc.cloud_left, -1, -1);
-    } else if (Math.random() > 0.6) {
-      sky.plot(etc.cloud_right, -1, -1);
-    }
-  }
-  sky.plot(etc.sun, -1, Math.floor(sky.rows - 9));
-}
+// function sky_render() {
+//   for (let i = 0; i < 8; i++) {
+//     if (Math.random() < 0.3) {
+//       sky.plot(etc.cloud_left, -1, -1);
+//     } else if (Math.random() > 0.6) {
+//       sky.plot(etc.cloud_right, -1, -1);
+//     }
+//   }
+//   sky.plot(etc.sun, -1, Math.floor(sky.rows - 9));
+// }
 
 // ※⁕⁜⌀ʘ▥▨▩▦▣▤▧◊◙●◌○◍◓◚◛◒◎◉◯◬⊗⊖⊛⨳★
 // ※⁕⁜⌀ʘ▥▨▩▦▣▤▧◊◙●◌○◍◓◚◛◒◎◉◯◬⊗⊖⊛⨳★

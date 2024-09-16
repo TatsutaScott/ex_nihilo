@@ -56,7 +56,6 @@ span {
   height: 100%;
   aspect-ratio: 1;
 }
-
 .ascii_unit {
   width: min-content;
   width: 100%;
@@ -72,4 +71,102 @@ span {
   margin: 0;
   white-space-collapse: preserve;
   font-family: "Courier", monospace;
+}
+.value {
+  text-align: right;
+}
+
+.setting {
+  display: grid;
+  grid-template-columns: 2fr auto 0.75fr;
+  width: 400px;
+}
+
+.setting_text {
+  font-size: 12pt;
+  font-family: "Courier", monospace;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 6pt;
+  outline: none;
+
+  border-top: 2px dashed #436436;
+  border-bottom: 2px dashed #436436;
+  background-color: #d6f59978;
+}
+
+.slider_container:hover {
+  opacity: 1;
+}
+.slider_container {
+  opacity: 0.5;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 8pt;
+  height: 14pt;
+  border-left: 2px #436436 solid;
+  border-right: 2px #436436 solid;
+  background: #d6f59978;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  appearance: none;
+  width: 8pt;
+  height: 14pt;
+  border-left: 2px #436436 solid;
+  border-right: 2px #436436 solid;
+  background: #d6f59978;
+  cursor: pointer;
+}
+
+#settings_modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: #d6f59978;
+  width: fit-content;
+  padding: 1rem;
+  border: 2px #436436 dashed;
+}
+
+h2 {
+  font-family: "Courier", monospace;
+  font-size: 12pt;
+  margin: 0;
+}
+
+#modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  font-family: "Courier", monospace;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}
+
+#setting_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
