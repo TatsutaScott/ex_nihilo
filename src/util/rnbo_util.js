@@ -32,6 +32,11 @@ class RNBO_device {
     document.addEventListener("click", () => this.context.resume());
   }
 
+  on() {
+    this.context.resume(); //start the audio context
+    this.gainNode.gain.value = 0.5;
+  }
+
   sendMessage(tag, message) {
     const event1 = new MessageEvent(TimeNow, tag, [message]);
     this.device.scheduleEvent(event1);

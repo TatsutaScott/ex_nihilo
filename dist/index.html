@@ -6,7 +6,8 @@
   </head>
   <body>
     <div id="title">
-      <pre>
+      <div>
+        <pre>
          _     _      _               _              _          _       _     _          _             _      
         /\ \ /_/\    /\ \            /\ \     _     /\ \       / /\    / /\  /\ \       _\ \          /\ \     
        /  \ \\ \ \   \ \_\          /  \ \   /\_\   \ \ \     / / /   / / /  \ \ \     /\__ \        /  \ \    
@@ -19,17 +20,21 @@
 / / /_______\ / / /    /_/ / / / /    / / //\__\/_/___\/ / /   / / //\__\/_/___\/_______/\__\// / /____\/ /   
 \/__________/ \/_/     \_\/  \/_/     \/_/ \/_________/\/_/    \/_/ \/_________/\_______\/    \/_________/     
     </pre
-      >
+        >
+        <div id="button_container">
+          <button id="onOff_button" class="button">[ start ]</button>
+          <button id="settings_button" class="button">[ settings ]</button>
+        </div>
+      </div>
       <div id="sky" class="ascii_grid"></div>
     </div>
 
-    <!-- <main id="main">
+    <main id="main">
       <div id="map"></div>
       <div id="scenery" class="ascii_grid"></div>
-    </main> -->
-    <button id="settings_button" class="button">[ Settings ]</button>
-    <div id="modal">
-      <div id="settings_modal">
+    </main>
+    <div id="settings_modal" class="modal">
+      <div id="settings_container">
         <div id="setting_header">
           <h2>Settings</h2>
           <button id="close_button" class="button">✕</button>

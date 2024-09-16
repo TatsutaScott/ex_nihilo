@@ -4,14 +4,16 @@ let master_vol,
   mammal_vol,
   river_vol,
   wind_vol,
-  roomTone_vol;
+  roomTone_vol,
+  isRunning = false;
 
-const settings_container = document.getElementById("settings_modal");
+const settings_container = document.getElementById("settings_container");
 const settings_button = document.getElementById("settings_button");
 const close_button = document.getElementById("close_button");
-const modal = document.getElementById("modal");
+const onOff_button = document.getElementById("onOff_button");
+const settings_modal = document.getElementById("settings_modal");
 
-function settings_init() {
+function settings_init(device) {
   master_vol = setting_slider("Master", 0.75, 0, 1);
   swarm_vol = setting_slider("Swarm", 0.75, 0, 1);
   flock_vol = setting_slider("Flock", 0.75, 0, 1);
@@ -28,9 +30,36 @@ function settings_init() {
   settings_container.appendChild(wind_vol);
   settings_container.appendChild(roomTone_vol);
 
-  console.log(settings_button);
-  settings_button.onclick = () => (modal.style.display = "flex");
-  close_button.onclick = () => (modal.style.display = "none");
+  settings_button.onclick = () => (settings_modal.style.display = "flex");
+  close_button.onclick = () => (settings_modal.style.display = "none");
+  master_vol.oninput = () =>
+    device.setParam("amp", master_vol.children[1].children[1].value);
+  swarm_vol.oninput = () =>
+    device.setParam("swarm_amp", swarm_vol.children[1].children[1].value);
+  flock_vol.oninput = () =>
+    device.setParam("flock_amp", flock_vol.children[1].children[1].value);
+  mammal_vol.oninput = () =>
+    device.setParam("mammal_amp", mammal_vol.children[1].children[1].value);
+  river_vol.oninput = () =>
+    device.setParam("river_amp", river_vol.children[1].children[1].value);
+  wind_vol.oninput = () =>
+    device.setParam("wind_amp", wind_vol.children[1].children[1].value);
+  roomTone_vol.oninput = () =>
+    device.setParam("room_amp", roomTone_vol.children[1].children[1].value);
+}
+
+function onOff(device) {
+  onOff_button.onclick = () => {
+    if (isRunning) {
+      device.sendMessage("in1", 0);
+      onOff_button.innerHTML = "[ start ]";
+    } else {
+      device.sendMessage("in1", 1);
+      onOff_button.innerHTML = "[ stop ]";
+    }
+
+    isRunning = !isRunning;
+  };
 }
 
 function newElement(type, className, idname, inner) {
@@ -65,4 +94,4 @@ function setting_slider(setting_name, init, lo, hi) {
   return container;
 }
 
-export { settings_init };
+export { settings_init, onOff };

@@ -95,7 +95,7 @@ span {
 
   border-top: 2px dashed #436436;
   border-bottom: 2px dashed #436436;
-  background-color: #d6f59978;
+  background-color: #d6f59900;
 }
 
 .slider_container:hover {
@@ -114,7 +114,7 @@ span {
   height: 14pt;
   border-left: 2px #436436 solid;
   border-right: 2px #436436 solid;
-  background: #d6f59978;
+  background: #d6f59900;
   cursor: pointer;
 }
 
@@ -124,11 +124,11 @@ span {
   height: 14pt;
   border-left: 2px #436436 solid;
   border-right: 2px #436436 solid;
-  background: #d6f59978;
+  background: #d6f59900;
   cursor: pointer;
 }
 
-#settings_modal {
+#settings_container {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -144,15 +144,13 @@ h2 {
   margin: 0;
 }
 
-#modal {
+.modal {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   display: none;
   justify-content: center;
@@ -163,10 +161,17 @@ h2 {
   font-family: "Courier", monospace;
   background-color: rgba(255, 255, 255, 0);
   border: none;
+  font-size: 1em;
+  color: #436436;
 }
 
 #setting_header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#button_container {
+  display: flex;
+  flex-direction: row;
 }

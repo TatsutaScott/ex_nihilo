@@ -2,8 +2,8 @@ class Grid {
   constructor(container, dim) {
     this.container = container;
     this.dim = dim;
-    this.width = container.clientWidth - 20;
-    this.height = container.clientHeight - 20;
+    this.width = container.clientWidth * 0.9;
+    this.height = container.clientHeight * 0.9;
     this.init();
   }
 
@@ -67,7 +67,6 @@ class Grid {
     }
 
     this.blank.forEach((r) => this.arr.push(r.slice()));
-    console.log(this.arr);
   }
 
   reset() {
@@ -77,8 +76,8 @@ class Grid {
   }
 
   update() {
-    for (let i = 0; i < this.rows; i++) {
-      for (let q = 0; q < this.columns; q++) {
+    for (let i = 0; i < this.arr.length; i++) {
+      for (let q = 0; q < this.arr[i].length; q++) {
         this.DOM[q][i].innerText = this.arr[q][i];
       }
     }
@@ -88,7 +87,7 @@ class Grid {
     if (!pArr) return;
     pArr.forEach((p) => {
       if (p[0] && p[1]) {
-        this.arr[p[1]][p[0]] = character;
+        this.arr[p[1] % this.dim][p[0] % this.dim] = character;
       }
     });
   }

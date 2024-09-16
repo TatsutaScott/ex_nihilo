@@ -1,12 +1,25 @@
 import p5 from "p5";
 import background_sketch from "./background_p5";
-import { settings_init } from "./settings";
+import { settings_init, onOff } from "./ui";
+import RNBO_device from "./util/rnbo_util";
+import patcher from "./rnbo/ex_nihilo_9.16.24_2.export.json";
+import { map_init } from "./panning_map";
 import ASCII_canvas from "./util/ASCII";
-import Grid from "./util/Grid";
+
 import { flowers, trees, etc, birds } from "./util/ascii_icons";
 
+// background p5 sketch
 new p5(background_sketch);
-settings_init();
+
+// RNBO device setup
+const device = new RNBO_device();
+device.init(patcher).then(() => {
+  map_init(device); //setup map (needs device to be created first, before messages can be handled)
+  onOff(device); //sets onOff button (needs device to be created first to prevent early function on)
+});
+
+// UI setup
+settings_init(device);
 
 // const sky_div = document.getElementById("sky");
 // const sky = new ASCII_canvas(sky_div, 10);
