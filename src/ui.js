@@ -14,13 +14,13 @@ const onOff_button = document.getElementById("onOff_button");
 const settings_modal = document.getElementById("settings_modal");
 
 function settings_init(device) {
-  master_vol = setting_slider("Master", 0.75, 0, 1);
-  swarm_vol = setting_slider("Swarm", 0.75, 0, 1);
-  flock_vol = setting_slider("Flock", 0.75, 0, 1);
-  mammal_vol = setting_slider("Mammal", 0.75, 0, 1);
-  river_vol = setting_slider("River", 0.75, 0, 1);
-  wind_vol = setting_slider("Wind", 0.75, 0, 1);
-  roomTone_vol = setting_slider("Room Tone", 0.75, 0, 1);
+  master_vol = setting_slider("Master", 0.8, 0, 1);
+  swarm_vol = setting_slider("Swarm", 1, 0, 1);
+  flock_vol = setting_slider("Flock", 0.9, 0, 1);
+  mammal_vol = setting_slider("Mammal", 0.65, 0, 1);
+  river_vol = setting_slider("River", 0.65, 0, 1);
+  wind_vol = setting_slider("Wind", 0.85, 0, 1);
+  roomTone_vol = setting_slider("Room Tone", 0.6, 0, 1);
 
   settings_container.appendChild(master_vol);
   settings_container.appendChild(swarm_vol);

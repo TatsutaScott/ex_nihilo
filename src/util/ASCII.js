@@ -21,7 +21,7 @@ class ASCII_canvas {
     this.DOMArr.forEach((d) => this.container.appendChild(d));
   }
 
-  plot(txt, x, y) {
+  plot(txt, x, y, showSpace = false) {
     //random position if -1
     if (x == -1) x = Math.floor(Math.random() * this.cols);
     if (y == -1) y = Math.floor(Math.random() * this.rows);
@@ -31,6 +31,9 @@ class ASCII_canvas {
       if (!this.DOMArr[y + l]) break;
       const chars = this.DOMArr[y + l].innerHTML.split("");
       for (let i = 0; i < lines[l].length; i++) {
+        if (lines[l][i] == " " && showSpace) {
+          chars[i + x] = lines[l][i];
+        }
         if (lines[l][i] != " " && i + x < this.cols - 1) {
           chars[i + x] = lines[l][i];
         }
