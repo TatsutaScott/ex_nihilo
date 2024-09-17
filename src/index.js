@@ -5,9 +5,9 @@ import RNBO_device from "./util/rnbo_util";
 import patcher from "./rnbo/ex_nihilo_9.16.24_2.export.json";
 
 import { map_init } from "./panning_map";
-import { settings_init, onOff } from "./ui";
+import { settings_init, onOff, info_init } from "./ui";
 
-import { draw_sky } from "./scenery";
+import { draw_sky, draw_ground } from "./scenery";
 
 // background p5 sketch
 new p5(background_sketch);
@@ -21,9 +21,11 @@ device.init(patcher).then(() => {
 
 // UI setup
 settings_init(device);
+info_init();
 
 // draw scenery
 draw_sky();
+draw_ground();
 
 // function scenery_render() {
 //   for (let i = 0; i < 20; i++) {

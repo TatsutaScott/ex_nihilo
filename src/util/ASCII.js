@@ -34,7 +34,7 @@ class ASCII_canvas {
         if (lines[l][i] == " " && showSpace) {
           chars[i + x] = lines[l][i];
         }
-        if (lines[l][i] != " " && i + x < this.cols - 1) {
+        if (lines[l][i] != " " && i + x < this.cols - 1 && lines[l][i] != "◌") {
           chars[i + x] = lines[l][i];
         }
       }

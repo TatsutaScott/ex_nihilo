@@ -9,9 +9,13 @@ let master_vol,
 
 const settings_container = document.getElementById("settings_container");
 const settings_button = document.getElementById("settings_button");
-const close_button = document.getElementById("close_button");
+const settings_close = document.getElementById("settings_close");
 const onOff_button = document.getElementById("onOff_button");
 const settings_modal = document.getElementById("settings_modal");
+
+const info_button = document.getElementById("info_button");
+const info_close = document.getElementById("info_close");
+const info_modal = document.getElementById("info_modal");
 
 function settings_init(device) {
   master_vol = setting_slider("Master", 0.8, 0, 1);
@@ -31,7 +35,7 @@ function settings_init(device) {
   settings_container.appendChild(roomTone_vol);
 
   settings_button.onclick = () => (settings_modal.style.display = "flex");
-  close_button.onclick = () => (settings_modal.style.display = "none");
+  settings_close.onclick = () => (settings_modal.style.display = "none");
   master_vol.oninput = () =>
     device.setParam("amp", master_vol.children[1].children[1].value);
   swarm_vol.oninput = () =>
@@ -94,4 +98,9 @@ function setting_slider(setting_name, init, lo, hi) {
   return container;
 }
 
-export { settings_init, onOff };
+function info_init() {
+  info_button.onclick = () => (info_modal.style.display = "flex");
+  info_close.onclick = () => (info_modal.style.display = "none");
+}
+
+export { settings_init, onOff, info_init };
