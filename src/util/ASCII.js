@@ -1,3 +1,5 @@
+import { char2Entity, entity2Char } from "./text_util";
+
 class ASCII_canvas {
   constructor(container, size) {
     this.size = size;
@@ -21,25 +23,56 @@ class ASCII_canvas {
     this.DOMArr.forEach((d) => this.container.appendChild(d));
   }
 
-  plot(txt, x, y, showSpace = false) {
-    //random position if -1
-    if (x == -1) x = Math.floor(Math.random() * this.cols);
-    if (y == -1) y = Math.floor(Math.random() * this.rows);
+  reset() {
+    this.DOMArr.forEach((d) => (d.innerHTML = " ".repeat(this.cols)));
+  }
 
-    const lines = txt.split("\n");
+  plot_sprite(sprite) {
+    if (this.inDisplayRange(sprite)) {
+      this.plot(sprite.string, sprite.displayX, sprite.displayY, sprite.spaces);
+    } else {
+      console.log("OUT!");
+    }
+  }
+
+  inDisplayRange(sprite) {
+    if (
+      sprite.displayX >= this.cols ||
+      sprite.displayX + sprite.width <= 0 ||
+      sprite.displayY + sprite.height <= 0 ||
+      sprite.displayY >= this.rows
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  plot(txt, x, y, showSpace = false) {
+    //random position if x or y is falsy
+    if (!x) x = Math.floor(Math.random() * this.cols);
+    if (!y) y = Math.floor(Math.random() * this.rows);
+
+    const lines = txt.split("\n"); //break string into individual lines
+
+    //loop through each line of the sprite
     for (let l = 0; l < lines.length; l++) {
-      if (!this.DOMArr[y + l]) break;
-      const chars = this.DOMArr[y + l].innerHTML.split("");
+      if (!this.DOMArr[y + l]) break; //stop if out of y-range
+
+      //split DOM line into arr of chars + convert to chars from entity so each character is only 1 entry in the array
+      const chars = entity2Char(this.DOMArr[y + l].innerHTML).split("");
+
+      //loop through each char in the sprite line
       for (let i = 0; i < lines[l].length; i++) {
-        if (lines[l][i] == " " && showSpace) {
-          chars[i + x] = lines[l][i];
-        }
-        if (lines[l][i] != " " && i + x < this.cols - 1 && lines[l][i] != "◌") {
-          chars[i + x] = lines[l][i];
+        if (
+          !(lines[l][i] == " " && !showSpace) && //makes sure it doesn't add a space if showSpace is false
+          lines[l][i] != "◌" && //ignores the space filling character (◌)
+          i + x < this.cols - 1 //char is within the width of the canvas
+        ) {
+          chars[i + x] = char2Entity(lines[l][i]); //converts characters to entities to make sure it formats right
         }
       }
-
-      this.DOMArr[y + l].innerHTML = chars.join("");
+      this.DOMArr[y + l].innerHTML = chars.join(""); //combine the chars into a string and set as the content of the DOM object
     }
   }
 }
