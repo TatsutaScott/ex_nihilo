@@ -30,8 +30,6 @@ class ASCII_canvas {
   plot_sprite(sprite) {
     if (this.inDisplayRange(sprite)) {
       this.plot(sprite.string, sprite.displayX, sprite.displayY, sprite.spaces);
-    } else {
-      console.log("OUT!");
     }
   }
 
@@ -50,8 +48,8 @@ class ASCII_canvas {
 
   plot(txt, x, y, showSpace = false) {
     //random position if x or y is falsy
-    if (!x) x = Math.floor(Math.random() * this.cols);
-    if (!y) y = Math.floor(Math.random() * this.rows);
+    if (!x && x != 0) x = Math.floor(Math.random() * this.cols);
+    if (!y && y != 0) y = Math.floor(Math.random() * this.rows);
 
     const lines = txt.split("\n"); //break string into individual lines
 
