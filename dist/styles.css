@@ -128,14 +128,20 @@ span {
   cursor: pointer;
 }
 
-#settings_container {
+.modal_container {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   background: #d6f59978;
   width: fit-content;
+  max-width: 50%;
   padding: 1rem;
   border: 2px #436436 dashed;
+}
+
+.info_text {
+  font-size: 12pt;
+  font-family: "Courier", monospace;
 }
 
 h2 {
@@ -163,9 +169,10 @@ h2 {
   border: none;
   font-size: 1em;
   color: #436436;
+  cursor: pointer;
 }
 
-#setting_header {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

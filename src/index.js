@@ -13,14 +13,14 @@ import { sky_init, sky_draw, ground_init, ground_draw } from "./scenery";
 new p5(background_sketch);
 
 // RNBO device setup
-// const device = new RNBO_device();
-// device.init(patcher).then(() => {
-//   map_init(device); //setup map (needs device to be created first, before messages can be handled)
-//   onOff(device); //sets onOff button (needs device to be created first to prevent early function on)
-// });
+const device = new RNBO_device();
+device.init(patcher).then(() => {
+  map_init(device); //setup map (needs device to be created first, before messages can be handled)
+  onOff(device); //sets onOff button (needs device to be created first to prevent early function on)
+});
 
 // UI setup
-// settings_init(device);
+settings_init(device);
 info_init();
 
 // draw scenery
