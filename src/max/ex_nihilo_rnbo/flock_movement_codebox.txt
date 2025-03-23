@@ -1,0 +1,9 @@
+Project Title: Kilter
+
+Deployed project can be accessed here: https://outofkilter.vercel.app/
+
+Project description:
+
+Kilter is an interactive sound piece that invites the participant to engage in a delicate dance of balance and mindfulness. By simply holding a cellphone, the user becomes the performer of a dynamic and unwieldy soundscape in which each subtle movement influences an interconnected chain of auditory responses. When the device is off balance, the sonic environment reflects that imbalance through more chaotic synthesis of sounds. However, as the participant finds stillness and balance, the soundscape shifts, gradually transforming into a calm and harmonious state.
+
+This piece draws inspiration from the principles of active meditation, where focus on a singular action can lead to a profound sense of presence and self-awareness. Kilter encourages participants to explore the boundaries of control and mindfulness, ultimately seeking a moment of perfect stillness amidst the noise.
