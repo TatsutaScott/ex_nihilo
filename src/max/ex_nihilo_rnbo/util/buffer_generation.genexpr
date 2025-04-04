@@ -1,0 +1,310 @@
+
+if(in1 > 0){
+	start_points = floor(abs(noise()) * 14) + 6;    //start
+    length_points = floor(abs(noise()) * 14) + 6;   //length
+    speed_points = floor(abs(noise()) * 14) + 6;    //speed
+    spray_points = floor(abs(noise()) * 14) + 6;    //spray
+    amp_points = floor(abs(noise()) * 14) + 6;      //amplitude
+
+	//reset buffers-----------------------------------------------
+	for(i =0; i < dim(start_break); i += 1){
+		poke(start_break, 0, i, 0); 	//start
+		poke(start_break, 0, i, 1);
+        poke(length_break, 0, i, 0); 	//length
+		poke(length_break, 0, i, 1);
+        poke(speed_break, 0, i, 0); 	//speed
+		poke(speed_break, 0, i, 1);
+        poke(spray_break, 0, i, 0); 	//spray
+		poke(spray_break, 0, i, 1);
+        poke(amp_break, 0, i, 0); 	    //amplitude
+		poke(amp_break, 0, i, 1);
+	}
+	
+	for(i =0; i < dim(start_function); i += 1){
+		poke(start_function, 0, i); 	//start
+        poke(length_function, 0, i); 	//length
+        poke(speed_function, 0, i); 	//speed
+        poke(spray_function, 0, i); 	//spray
+        poke(amp_function, 0, i); 	    //amplitude
+	}
+
+//start-------------------------------------------------------
+	//fill breakpoints
+	for(i = 0; i < start_points; i += 1){	
+		time = scale(noise(), -1, 1, 0, dim(start_function) - 1);
+		poke(start_break, time, i, 1);
+
+		value = scale(noise(), -1, 1, 0, 1); 
+		poke(start_break, value, i, 0);
+	}	
+	
+	// sort the time values
+	for(pass = 0; pass < start_points - 1; pass += 1) {
+        for(i = 0; i < start_points - 1 - pass; i += 1){
+            a = peek(start_break, i, 1);
+            b = peek(start_break, i + 1, 1);
+
+            if(a > b){
+                // Swap values
+                poke(start_break, b, i, 1);
+                poke(start_break, a, i + 1, 1);
+           	}
+       	}
+   	}
+	
+	//caluculate function
+	for(i = 0; i < start_points ;i+= 1){
+	lo_time = peek(start_break, i, 1); 
+	hi_time = peek(start_break, i +1, 1); 
+	
+	lo_val = peek(start_break,i, 0); 
+	hi_val = peek(start_break, i +1, 0); 
+
+		for(q =lo_time; q < hi_time; q += 1){
+			val = scale(q, lo_time, hi_time, lo_val, hi_val);
+			poke(start_function, val, q, 0);
+		} 
+	}
+	
+	//fill from start to first point
+	first_time = peek(start_break, 0, 1);
+	first_val = peek(start_break, 0, 0);
+	
+	for(x= 0; x < first_time; x+= 1){
+		v = scale(x, 0,first_time , 0,first_val );
+		poke(start_function, v,x);
+	}
+	
+	//fill from last point to end
+	last_time = peek(start_break, start_points - 1, 1);
+	last_val = peek(start_break, start_points - 1, 0);
+	
+	for(x= last_time; x < dim(start_function); x+= 1){
+		v = scale(x, last_time,dim(start_function) , last_val,0 );
+		poke(start_function, v,x);
+	}
+
+//length-------------------------------------------------------
+	//fill breakpoints
+	for(i = 0; i < length_points; i += 1){	
+		time = scale(noise(), -1, 1, 0, dim(length_function) - 1);
+		poke(length_break, time, i, 1);
+
+		value = scale(noise(), -1, 1, 0, 1); 
+		poke(length_break, value, i, 0);
+	}	
+	
+	// sort the time values
+	for(pass = 0; pass < length_points - 1; pass += 1) {
+        for(i = 0; i < length_points - 1 - pass; i += 1){
+            a = peek(length_break, i, 1);
+            b = peek(length_break, i + 1, 1);
+
+            if(a > b){
+                // Swap values
+                poke(length_break, b, i, 1);
+                poke(length_break, a, i + 1, 1);
+           	}
+       	}
+   	}
+	
+	//caluculate function
+	for(i = 0; i < length_points ;i+= 1){
+	lo_time = peek(length_break, i, 1); 
+	hi_time = peek(length_break, i +1, 1); 
+	
+	lo_val = peek(length_break,i, 0); 
+	hi_val = peek(length_break, i +1, 0); 
+
+		for(q =lo_time; q < hi_time; q += 1){
+			val = scale(q, lo_time, hi_time, lo_val, hi_val);
+			poke(length_break, val, q, 0);
+		} 
+	}
+	
+	//fill from start to first point
+	first_time = peek(length_break, 0, 1);
+	first_val = peek(length_break, 0, 0);
+	
+	for(x= 0; x < first_time; x+= 1){
+		v = scale(x, 0,first_time , 0,first_val );
+		poke(length_function, v,x);
+	}
+	
+	//fill from last point to end
+	last_time = peek(length_break, length_points - 1, 1);
+	last_val = peek(length_break, length_points - 1, 0);
+	
+	for(x= last_time; x < dim(length_function); x+= 1){
+		v = scale(x, last_time,dim(length_function) , last_val,0 );
+		poke(length_function, v,x);
+	}
+
+//speed-------------------------------------------------------
+	//fill breakpoints
+	for(i = 0; i < speed_points; i += 1){	
+		time = scale(noise(), -1, 1, 0, dim(speed_function) - 1);
+		poke(speed_break, time, i, 1);
+
+		value = scale(noise(), -1, 1, 0, 1); 
+		poke(speed_break, value, i, 0);
+	}	
+	
+	// sort the time values
+	for(pass = 0; pass < speed_points - 1; pass += 1) {
+        for(i = 0; i < speed_points - 1 - pass; i += 1){
+            a = peek(speed_break, i, 1);
+            b = peek(speed_break, i + 1, 1);
+
+            if(a > b){
+                // Swap values
+                poke(speed_break, b, i, 1);
+                poke(speed_break, a, i + 1, 1);
+           	}
+       	}
+   	}
+	
+	//caluculate function
+	for(i = 0; i < speed_points ;i+= 1){
+	lo_time = peek(speed_break, i, 1); 
+	hi_time = peek(speed_break, i +1, 1); 
+	
+	lo_val = peek(speed_break,i, 0); 
+	hi_val = peek(speed_break, i +1, 0); 
+
+		for(q =lo_time; q < hi_time; q += 1){
+			val = scale(q, lo_time, hi_time, lo_val, hi_val);
+			poke(speed_function, val, q, 0);
+		} 
+	}
+	
+	//fill from start to first point
+	first_time = peek(speed_break, 0, 1);
+	first_val = peek(speed_break, 0, 0);
+	
+	for(x= 0; x < first_time; x+= 1){
+		v = scale(x, 0,first_time , 0,first_val );
+		poke(speed_function, v,x);
+	}
+	
+	//fill from last point to end
+	last_time = peek(speed_break, speed_points - 1, 1);
+	last_val = peek(speed_break, speed_points - 1, 0);
+	
+	for(x = last_time; x < dim(speed_function); x += 1){
+		v = scale(x, last_time,dim(speed_function) , last_val,0 ); 
+		poke(speed_function, v,x);
+	}
+
+//spray-------------------------------------------------------
+	//fill breakpoints
+	for(i = 0; i < spray_points; i += 1){	
+		time = scale(noise(), -1, 1, 0, dim(spray_function) - 1);
+		poke(spray_break, time, i, 1);
+
+		value = scale(noise(), -1, 1, 0, 1); 
+		poke(spray_break, value, i, 0);
+	}	
+	
+	// sort the time values
+	for(pass = 0; pass < spray_points - 1; pass += 1) {
+        for(i = 0; i < spray_points - 1 - pass; i += 1){
+            a = peek(spray_break, i, 1);
+            b = peek(spray_break, i + 1, 1);
+
+            if(a > b){
+                // Swap values
+                poke(spray_break, b, i, 1);
+                poke(spray_break, a, i + 1, 1);
+           	}
+       	}
+   	}
+	
+	//caluculate function
+	for(i = 0; i < spray_points ;i+= 1){
+	lo_time = peek(spray_break, i, 1); 
+	hi_time = peek(spray_break, i +1, 1); 
+	
+	lo_val = peek(spray_break,i, 0); 
+	hi_val = peek(spray_break, i +1, 0); 
+
+		for(q =lo_time; q < hi_time; q += 1){
+			val = scale(q, lo_time, hi_time, lo_val, hi_val);
+			poke(spray_function, val, q, 0);
+		} 
+	}
+	
+	//fill from start to first point
+	first_time = peek(spray_break, 0, 1);
+	first_val = peek(spray_break, 0, 0);
+	
+	for(x= 0; x < first_time; x+= 1){
+		v = scale(x, 0, first_time, 0, first_val );
+		poke(spray_function, v, x);
+	}
+	
+	//fill from last point to end
+	last_time = peek(spray_break, spray_points - 1, 1);
+	last_val = peek(spray_break, spray_points - 1, 0);
+	
+	for(x = last_time; x < dim(spray_function); x += 1){
+		v = scale(x, last_time, dim(spray_function), last_val, 0);
+		poke(spray_function, v, x);
+	}
+      
+//amplitude-------------------------------------------------------
+	//fill breakpoints
+	for(i = 0; i < amp_points; i += 1){	
+		time = scale(noise(), -1, 1, 0, dim(amp_function) - 1);
+		poke(amp_break, time, i, 1);
+
+		value = scale(noise(), -1, 1, 0, 1); 
+		poke(amp_break, value, i, 0);
+	}	
+	
+	// sort the time values
+	for(pass = 0; pass < amp_points - 1; pass += 1) {
+        for(i = 0; i < amp_points - 1 - pass; i += 1){
+            a = peek(amp_break, i, 1);
+            b = peek(amp_break, i + 1, 1);
+
+            if(a > b){
+                // Swap values
+                poke(amp_break, b, i, 1);
+                poke(amp_break, a, i + 1, 1);
+           	}
+       	}
+   	}
+	
+	//caluculate function
+	for(i = 0; i < amp_points ;i+= 1){
+	lo_time = peek(amp_break, i, 1); 
+	hi_time = peek(amp_break, i +1, 1); 
+	
+	lo_val = peek(amp_break,i, 0); 
+	hi_val = peek(amp_break, i +1, 0); 
+
+		for(q =lo_time; q < hi_time; q += 1){
+			val = scale(q, lo_time, hi_time, lo_val, hi_val);
+			poke(amp_function, val, q, 0);
+		} 
+	}
+	
+	//fill from start to first point
+	first_time = peek(amp_break, 0, 1);
+	first_val = peek(amp_break, 0, 0);
+	
+	for(x= 0; x < first_time; x+= 1){
+		v = scale(x, 0,first_time , 0,first_val );
+		poke(amp_function, v,x);
+	}
+	
+	//fill from last point to end
+	last_time = peek(amp_break, amp_points - 1, 1);
+	last_val = peek(amp_break, amp_points - 1, 0);
+	
+	for(x = last_time; x < dim(amp_function); x += 1){
+		v = scale(x, last_time, dim(amp_function), last_val, 0 );
+		poke(amp_function, v, x);
+	}
+}
